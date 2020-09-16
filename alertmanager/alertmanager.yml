@@ -1,0 +1,11 @@
+route:
+  receiver: executor
+  repeat_interval: 30m
+  routes:
+    - match_re:
+        alertname: (High|Low)Temperature
+
+receivers:
+  - name: executor
+    webhook_configs:
+      - url: http://127.0.0.1:8080

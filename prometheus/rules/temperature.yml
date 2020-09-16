@@ -1,0 +1,7 @@
+groups:
+  - name: temperature
+    rules:
+      - alert: HighTemperature
+        expr: onewire_temperature_c{device_id="28.7A17FB080000"} > 18.25
+      - alert: LowTemperature
+        expr: onewire_temperature_c{device_id="28.7A17FB080000"} < 18
