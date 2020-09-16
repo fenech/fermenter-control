@@ -1,11 +1,18 @@
 route:
-  receiver: executor
+  receiver: switch_on
   repeat_interval: 30m
   routes:
-    - match_re:
-        alertname: (High|Low)Temperature
+    - receiver: switch_on
+      match:
+        alertname: HighTemperature
+    - receiver: switch_off
+      match:
+        alertname: LowTemperature
 
 receivers:
-  - name: executor
+  - name: switch_on
     webhook_configs:
-      - url: http://127.0.0.1:8080
+      - url: http://127.0.0.1:7000/on
+  - name: switch_off
+    webhook_configs:
+      - url: http://127.0.0.1:7000/off
