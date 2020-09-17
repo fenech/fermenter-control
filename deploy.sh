@@ -34,13 +34,6 @@ sudo podman create \
   -v /home/pi/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml \
   prom/alertmanager
 
-sudo podman create \
-  --name executor \
-  --pod brew \
-  --restart always \
-  -v /home/pi/executor/executor.yml:/etc/executor/executor.yml \
-  fenech/prometheus-am-executor -f /etc/executor/executor.yml -v
-
 sudo podman generate systemd -n -f brew
 
 for service in pod-brew container-{onewire-exporter,gpio-switch,prometheus,alertmanager}; do
